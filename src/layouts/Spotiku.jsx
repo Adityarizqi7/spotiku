@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 
-import Footer from '@/components/Footer'
-import TopBar from '@/components/navbar/Topbar'
+// import Footer from '@/components/Footer'
+// import TopBar from '@/components/navbar/Topbar'
 import BtnToTop from '@/components/button/BtnToTop'
 
     const Me = ({
         title = 'Spotiku — Explore and Discover Your Personal Spotify Statistics ',
-        key = 'aditya rizqi ardhana site, aditya rizqi ardhana site id, aditya rizqi ardhana site indonesia',
-        desc = 'Spotiku | Tempat untuk melihat lebih jauh statistik spotify personalmu ',
+        kw = 'aditya rizqi ardhana site, aditya rizqi ardhana site id, aditya rizqi ardhana site indonesia',
+        desc = 'Spotiku | Tempat untuk melihat lebih jauh statistik spotify personalmu',
         ogUrl,
         ogType,
         ogTitle,
@@ -21,7 +21,7 @@ import BtnToTop from '@/components/button/BtnToTop'
             <Helmet prioritizeSeoTags>
                 <title>{title}</title>
 
-                <meta name='keywords' value={key} />
+                <meta name='keywords' value={kw} />
                 <meta name='description' value={desc} />
                 <meta property='og:url' content={ogUrl} />
                 <meta property='og:type' content={ogType} />
@@ -44,9 +44,9 @@ import BtnToTop from '@/components/button/BtnToTop'
                 ></link>
             </Helmet>
 
-            <TopBar />
+            {/* <TopBar /> */}
                 {children}
-            <Footer />
+            {/* <Footer /> */}
 
             <BtnToTop />
         </HelmetProvider>
@@ -55,14 +55,14 @@ import BtnToTop from '@/components/button/BtnToTop'
 
 Me.propTypes= {
     title: PropTypes.string.isRequired,
-    key: PropTypes.string.isRequired,
+    kw: PropTypes.string.isRequired,
     desc: PropTypes.string.isRequired,
-    ogUrl: PropTypes.string.isRequired,
-    ogType: PropTypes.string.isRequired,
-    ogTitle: PropTypes.string.isRequired,
-    ogDesc: PropTypes.string.isRequired,
-    twitTitle: PropTypes.string.isRequired,
-    children: PropTypes.any.isRequired,
+    ogUrl: PropTypes.string,
+    ogType: PropTypes.string,
+    ogTitle: PropTypes.string,
+    ogDesc: PropTypes.string,
+    twitTitle: PropTypes.string,
+    children: PropTypes.any,
 }
 
 export default Me
