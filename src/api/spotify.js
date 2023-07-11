@@ -27,7 +27,7 @@ const SCOPES_URL_PARAM = SCOPES.join(SCOPES_DELIMITTER)
 export const LOGIN_URL = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL_AFTER_SIGNIN}&scope=${SCOPES_URL_PARAM}&response_type=code&show_dialog=true&state=${STATE}`
 
 export default axios.create({
-    baseURL: 'https://api.spotify.com/v1/me/'
+    baseURL: 'https://api.spotify.com/v1/'
 })
 
 function generateRandomString(num) {
@@ -68,7 +68,7 @@ export const getAccessToken = async () => {
         if (response.ok) {
             return response.json();
         } else {
-            throw new Error('Failed to signin with Spotify');
+            throw new Error('Failed to get Token.');
         }
     } catch (error) {
         console.error(error);

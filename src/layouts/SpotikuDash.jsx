@@ -1,14 +1,13 @@
 import PropTypes from 'prop-types';
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 
-// import Footer from '@/components/Footer'
-// import TopBar from '@/components/navbar/Topbar'
 import BtnToTop from '@/components/button/BtnToTop'
 
-const Spotiku = ({
-        title = 'Spotiku — Explore and Discover Your Personal Spotify Statistics ',
-        kw = 'spotiku, spotiku id, spotiku indonesia',
-        desc = 'Spotiku | Tempat untuk melihat lebih jauh statistik spotify personalmu',
+
+const SpotikuDash = ({
+        title = 'Home - Explore and Discover Your Personal Spotify Statistics ',
+        kw = 'spotiku home, spotiku beranda id, spotiku beranda indonesia',
+        desc = 'Beranda - Halaman beranda untuk menampilkan highlight spotify mu',
         ogUrl,
         ogType,
         ogTitle,
@@ -16,6 +15,7 @@ const Spotiku = ({
         twitTitle,
         children
     }) => {
+    
     return (
         <HelmetProvider>
             <Helmet prioritizeSeoTags>
@@ -45,17 +45,15 @@ const Spotiku = ({
                 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"></link>
             </Helmet>
 
-            {/* <TopBar /> */}
-                {children}
-            {/* <Footer /> */}
+            {children}
 
             <BtnToTop />
         </HelmetProvider>
     )
 }
 
-Spotiku.propTypes= {
-    title: PropTypes.object.isRequired,
+SpotikuDash.propTypes= {
+    title: PropTypes.string.isRequired,
     kw: PropTypes.string.isRequired,
     desc: PropTypes.string.isRequired,
     ogUrl: PropTypes.string,
@@ -66,4 +64,4 @@ Spotiku.propTypes= {
     children: PropTypes.any,
 }
 
-export default Spotiku
+export default SpotikuDash

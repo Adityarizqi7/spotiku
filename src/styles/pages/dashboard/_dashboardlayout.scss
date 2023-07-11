@@ -1,0 +1,34 @@
+.dashboard-component {
+    #container_dashboard {
+        .side-leftbar-component {
+            @media only screen and (min-width: 768px) and (max-width: 1263px) {
+                flex-basis: 0;
+            }
+            .leftbar__title {
+                h1 {
+                    @media only screen and (min-width: 768px) and (max-width: 1263px) {
+                        padding-left: 1.5rem;
+                        padding-right: 1.5rem;
+                    }
+                }
+            }
+            .leftbar__menu-list {
+                .menu-list__wrapper {
+                    .menu-list__item-menu {
+                        div {
+                            @media only screen and (min-width: 768px) and (max-width: 1263px) {
+                                padding-left: 1.5rem;
+                                padding-right: 1.5rem;
+                            }
+                            h2 {
+                                @media only screen and (min-width: 768px) and (max-width: 1263px) {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
 import Spotiku from '@/layouts/Spotiku'
+import { LOGIN_URL } from '@/api/spotify'
 import { useNavigate } from 'react-router-dom'
 import { CheckIcon } from '@heroicons/react/24/outline'
-import { getParamsFromUrl, getRequestToken, LOGIN_URL, STATE } from '@/api/spotify'
 
-import '../styles/pages/_home.scss'
+import '../styles/pages/_signin.scss'
 import RippleBtn from '@/components/button/RippleBtn'
 import HeadPrimary from '@/components/heading/HeadPrimary'
 
-export default function Home() {
+export default function Signin() {
 
     const navigate = useNavigate()
 
@@ -17,44 +17,22 @@ export default function Home() {
     }
 
     useEffect(() => {
-        const { state, code } = getParamsFromUrl();
-        
-        if (state && code) {
-            const location = window.location.toString();
-            window.history.replaceState(
-                {},
-                document.title,
-                location.substring(0, location.indexOf('?'))
-            );
-            
-            localStorage.setItem('client_code_spotify', code);
-            getRequestToken(code);
-        }
-
-        if (window.location.search && state !== STATE) {
-            const location = window.location.toString();
-            window.history.replaceState(
-                {},
-                document.title,
-                location.substring(0, location.indexOf('?'))
-            );
-            
-            navigate('/');
-        }
-    }, [])  // eslint-disable-line react-hooks/exhaustive-deps
+        const isSignin = localStorage.getItem('client_code_spotify')
+        isSignin && navigate('/')
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <Spotiku
-            title='Spotiku — Explore and Discover Your Personal Spotify Statistics.'
-            kw='spotiku, spotiku beranda, spotiku id spotifyku, spotiku indonesia'
-            desc='Spotiku | Tempat untuk melihat lebih jauh statistik spotify personalmu'
+            title='Signin — Spotiku.'
+            kw='spotiku singin, spotiku login, spotiku masuk id, spotiku masuk indonesia '
+            desc='Signin | Masuk dengan Akun Spotifymu untuk menjelajahi Spotiku'
         >
             <main
-                className={`home-component`}
+                className={`signin-component`}
             >
-                <section id='container_home'>
+                <section id='container_signin'>
                 {
-                    <article className='headline-container-home'>
+                    <article className='headline-container-signin'>
                         <div className='grid content-center h-screen'>
                             <HeadPrimary
                                 title='SPOTIKU'

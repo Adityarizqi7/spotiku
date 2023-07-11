@@ -11,8 +11,8 @@ const HeadPrimary = ({ classFunc, classHeading, title, children }) => {
 HeadPrimary.propTypes= {
     title: PropTypes.string.isRequired,
     children: PropTypes.any,
-    classFunc: PropTypes.string.isRequired,
-    classHeading: PropTypes.string.isRequired,
+    classFunc: PropTypes.string,
+    classHeading: PropTypes.string,
 }
 
 export default HeadPrimary
