@@ -110,9 +110,9 @@ const DashboardLayout =({
         >
             <article className="dashboard-component">
                 <section id="container_dashboard">
-                    <div className="wrapper-dashboard flex items-center w-full h-screen">
+                    <div className="wrapper-dashboard flex w-full">
                         <LeftBar />
-                        <section className="content-component md:w-[80%] w-full h-screen px-10 2xs:px-5">
+                        <section className="content-component w-[80%] px-10 2xs:px-5">
                             <div className="breadcumbs-profile-wrapper py-8 2xs:py-5 md:flex hidden justify-between">
                                 <div className="breadcumbs flex items-center gap-5">
                                     <RippleBtn 

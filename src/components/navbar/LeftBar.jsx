@@ -3,7 +3,7 @@ import { AlbumIcon, FavoriteIcon, HomeIcon, PlaylistIcon } from "../icon/IconLis
 
 export default function LeftBar() {
     return (
-        <section className="side-leftbar-component bg-slate-50 md:inline hidden basis-[20%] h-screen">
+        <section className="side-leftbar-component bg-slate-50 md:inline hidden basis-[20%]">
             <div className="leftbar__title py-8">
                 <h1 className='text-slate-800 font-semibold text-[1.5rem] pl-9 montserrat'>S</h1>
             </div>

@@ -2,7 +2,7 @@
     #container_dashboard {
         .side-leftbar-component {
             @media only screen and (min-width: 768px) and (max-width: 1263px) {
-                flex-basis: 0;
+                flex: 0;
             }
             .leftbar__title {
                 h1 {
@@ -29,6 +29,9 @@
                     }
                 }
             }
+        }
+        .content-component {
+            flex-basis: 100%;
         }
     }
 }
