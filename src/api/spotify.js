@@ -4,8 +4,8 @@ import { Base64 } from 'js-base64';
 
 const CLIENT_ID = 'e4aceda33ec947178d738ec2e9b74288'
 const CLIENT_SECRET = '1a44bda08b3a4eb6af426d686c34fe4d'
-const REDIRECT_URL_AFTER_SIGNIN = 'http://127.0.0.1:5173/'
-const basic = Base64.encode(`${CLIENT_ID}:${CLIENT_SECRET}`);
+const REDIRECT_URL_AFTER_SIGNIN = 'https://spotiku.netlify.app/'
+const basic = Base64.encode(`${CLIENT_ID}:${CLIENT_SECRET}`);   
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
 export const SPOTIFY_AUTHORIZE_ENDPOINT = 'https://accounts.spotify.com/authorize'
