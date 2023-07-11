@@ -47,7 +47,9 @@ const SpotikuDash = ({
 
             {children}
 
-            <BtnToTop />
+            <BtnToTop 
+                className='md:bottom-4 bottom-16'
+            />
         </HelmetProvider>
     )
 }

@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import React, { useCallback } from 'react'
 import { ChevronUpIcon } from '@heroicons/react/24/outline'
 
 import '../../styles/components/button/_btntotop.scss'
 
-export default function BtnTopTop() {
+export default function BtnTopTop({className}) {
     const [buttontotop, setButtontotop] = React.useState(false)
 
     const changePosition = useCallback(() => {
@@ -23,8 +24,8 @@ export default function BtnTopTop() {
             id='button_scroll_top'
             className={`
                 ${buttontotop ? 'right-4' : '-right-20'}
-                ' sm:w-10' fixed bottom-4 z-20 w-[2rem] cursor-pointer text-blue-600 hover:rounded-full hover:bg-blue-600 hover:p-1 hover:text-neutral-200
-            `}
+                ' sm:w-10' fixed z-20 w-[2rem] cursor-pointer text-blue-600 hover:rounded-full hover:bg-blue-600 hover:p-1 hover:text-neutral-200
+             ` + className}
             onClick={() => {
                 window.scroll({
                     top: 0,
@@ -33,4 +34,8 @@ export default function BtnTopTop() {
             }}
         />
     )
+}
+
+BtnTopTop.propTypes= {
+    className: PropTypes.string,
 }

@@ -132,7 +132,7 @@ const Home = () => {
         >
             <section className={`home-component`}>
                 <div className="greeting">
-                    <HeadPrimary title={dayConvert()} classHeading={'manrope text-[30px] font-bold'} />
+                    <HeadPrimary title={dayConvert()} classHeading={'manrope text-[30px] font-bold 7xs:text-[15vw]'} />
                 </div>
                 <div className="genre-recom mt-4">
                     <div className="genre-wrapper flex flex-wrap items-center gap-4">
@@ -201,9 +201,9 @@ const Home = () => {
                             topGlobalTrack?.tracks?.items?.slice(0, 5)?.map((ele, idx) => {
                                 return (
                                     <div key={idx+1} className="popular-global-track__box-item manrope flex items-center w-full gap-x-8">
-                                        <h1 className='nomor-track font-bold leading-normal text-center text-slate-800'>{idx+1}</h1>
-                                        <div className="detail-track border-b border-[#d6d6d6c2] grid grid-cols-6 xxs:grid-cols-4 4xs:grid-cols-2 2xs:flex 2xs:items-center 2xs:justify-between 8xs:flex-col 8xs:justify-start w-full pb-4">
-                                            <div className="name-image col-span-2">
+                                        <h1 className='nomor-track font-bold leading-normal text-center text-slate-800 7xs:hidden'>{idx+1}</h1>
+                                        <div className="detail-track border-b border-[#d6d6d6c2] grid grid-cols-6 xxs:grid-cols-2 4xs:grid-cols-2 2xs:flex 2xs:items-center 2xs:justify-between 8xs:flex-col 8xs:justify-start w-full pb-4">
+                                            <div className="name-image col-span-2 xxs:col-span-1">
                                                 <LightImage
                                                     path={ele?.track?.album?.images?.[0]?.url}
                                                     caption={`<h4 style='font-family: manrope;'>${ele?.track?.name} from ${ele?.track?.artists?.[0]?.name} - Spotiku</h4>`}
@@ -212,11 +212,11 @@ const Home = () => {
                                                         className='w-[54px] h-[54px]'
                                                         path={ele?.track?.album?.images?.[2]?.url}
                                                         text={limitString(ele?.track?.name, 20)}
-                                                        classWrapper='6xs:flex-col 6xs:items-center 6xs:space-x-0 6xs:space-y-2'
+                                                        classWrapper='5xs:flex-col 5xs:items-start 5xs:space-x-0 5xs:space-y-2'
                                                     />
                                                 </LightImage>
                                             </div>
-                                            <div className="record grid grid-cols-3 xxs:grid-cols-1 place-content-center col-span-3 xxs:col-span-1 2xs:hidden w-full">
+                                            <div className="record grid grid-cols-3 place-content-center col-span-3 xxs:hidden w-full">
                                                 <div className="record__artist xxs:hidden">
                                                     <Tooltip text={'artist'}>
                                                         <h1 className='line-clamp-1 hover:cursor-default'>
@@ -243,7 +243,15 @@ const Home = () => {
                                                     </Tooltip>
                                                 </div>
                                             </div>
-                                            <div className="open_spotify flex items-center justify-end gap-2 8xs:mt-2">
+                                            <div className="open_spotify flex py-4 4xs:py-0 justify-end gap-4 8xs:mt-2">
+                                                <div className="record__time 4xs:!hidden hidden xxs:block">
+                                                    <Tooltip text='duration'>
+                                                        <div className='flex items-center gap-2'>
+                                                            <ClockIcon fill='#9d9e9e' />
+                                                            <h1 className='line-clamp-1 hover:cursor-default'>{convertMiliToMinute(ele?.track?.duration_ms)}</h1>
+                                                        </div>
+                                                    </Tooltip>
+                                                </div>
                                                 <a href={ele?.track?.external_urls?.spotify} target="_blank" rel="noopener noreferrer">
                                                     <Tooltip text='open spotify'>
                                                         <PaperAirplaneIcon className='w-5 h-5 rotate-[325deg] hover:rotate-[685deg] transition-all duration-500' />
@@ -272,18 +280,18 @@ const Home = () => {
                         loading ?
                             <SkeletonSquare className='mt-6' />
                         :
-                        <div className='grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 6xs:grid-cols-1 gap-y-7 gap-x-8 mt-6'>
+                        <div className='grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 6xs:grid-cols-1 gap-y-7 gap-x-8 6xs:gap-x-0 mt-6'>
                         {
                             recentlyPlayed?.items?.slice(0, 10)?.map((ele, idx) => (
                                 <div key={idx + 1} className="new-release__box-item manrope">
                                     <AvatarTrackSquare
                                         alt={ele?.track?.name}
                                         textAbove={ele?.track?.name}
-                                        path={ele?.track?.album?.images?.[1]?.url}
-                                        path_light={ele?.track?.album?.images?.[1]?.url}
                                         className='w-[300px] aspect-137'
                                         link={ele?.track?.external_urls?.spotify}
                                         textBelow={ele?.track?.artists?.[0]?.name}
+                                        path={ele?.track?.album?.images?.[1]?.url}
+                                        path_light={ele?.track?.album?.images?.[1]?.url}
                                         caption_light={`<h4 style='font-family: manrope;'>${ele?.track?.name} from ${ele?.track?.artists?.[0]?.name} - Spotiku</h4>`}
                                     />
                                 </div>

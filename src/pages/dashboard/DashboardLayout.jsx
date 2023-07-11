@@ -11,8 +11,9 @@ import DotWave from '@/components/loading/Dot'
 import LeftBar from '@/components/navbar/LeftBar'
 import { Menu, Transition } from '@headlessui/react'
 import RippleBtn from '@/components/button/RippleBtn'
-import { AvatarProfileFree, AvatarProfilePremium } from '@/components/profile/Avatar'
 import LightImage from '@/components/image/LightImage'
+import { BottomBar } from '@/components/navbar/BottomBar'
+import { AvatarProfileFree, AvatarProfilePremium } from '@/components/profile/Avatar'
 
 const DashboardLayout =({
     title = 'Spotiku — Explore and Discover Your Personal Spotify Statistics.',
@@ -192,6 +193,7 @@ const DashboardLayout =({
                             </div>
                             {children}
                         </section>
+                        <BottomBar />
                     </div>
                 </section>
             </article> 

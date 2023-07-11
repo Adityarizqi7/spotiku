@@ -202,10 +202,10 @@ export function AvatarTrackSquare({path, alt, path_light, caption_light, textAbo
                 <Tooltip
                     text={textAbove}
                 >
-                    <h1 className='font-semibold text-[16px] text-slate-800 hover:text-green-base mt-1 line-clamp-1'>{limitString(textAbove, 17)}</h1>
+                    <h1 className='font-semibold text-[16px] text-slate-800 hover:text-green-base mt-2 line-clamp-1'>{limitString(textAbove, 17)}</h1>
                 </Tooltip>
             </a>
-            <h2 className='font-medium text-[12px] text-slate-500'>{textBelow}</h2>
+            <h2 className='font-medium text-[12px] text-slate-500 mt-1'>{textBelow}</h2>
         </div>
     )
 }
