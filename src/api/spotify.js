@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Base64 } from 'js-base64';
-import querystring from 'querystring';
+// import querystring from 'querystring';
 
 const CLIENT_ID = 'e4aceda33ec947178d738ec2e9b74288'
 const CLIENT_SECRET = '1a44bda08b3a4eb6af426d686c34fe4d'
@@ -10,8 +10,6 @@ const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
 export const SPOTIFY_AUTHORIZE_ENDPOINT = 'https://accounts.spotify.com/authorize'
 export const STATE = generateRandomString(16)
-export const refresh_token =
-'AQBDBBNq4dfZyqCgLp8PyEvfybRjD5EYpTclmOPa6n05PsrpG8bHTEkTGfJOO5z1phiRvfAyVjR3UJbT64eWVLeKxK1iabpPAwmg2vrClRwKw-Tt91IrZMiMIyiG-8B4vG0'
 
 const SCOPES_DELIMITTER = '%20'
 const SCOPES = [
@@ -48,33 +46,33 @@ export const getParamsFromUrl = () => {
         }, {})
 }
 
-export const getAccessToken = async () => {
+// export const getAccessToken = async () => {
     
-    const requestBody = querystring.stringify({
-        grant_type: 'refresh_token',
-        refresh_token
-    });
+//     const requestBody = querystring.stringify({
+//         grant_type: 'refresh_token',
+//         refresh_token
+//     });
 
-    try {
-        const response = await fetch(TOKEN_ENDPOINT, {
-            method: 'POST',
-            headers: {
-                Authorization: `Basic ${basic}`,
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: requestBody
-        });
+//     try {
+//         const response = await fetch(TOKEN_ENDPOINT, {
+//             method: 'POST',
+//             headers: {
+//                 Authorization: `Basic ${basic}`,
+//                 'Content-Type': 'application/x-www-form-urlencoded'
+//             },
+//             body: requestBody
+//         });
 
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error('Failed to get Token.');
-        }
-    } catch (error) {
-        console.error(error);
-        throw error;
-    }
-};
+//         if (response.ok) {
+//             return response.json();
+//         } else {
+//             throw new Error('Failed to get Token.');
+//         }
+//     } catch (error) {
+//         console.error(error);
+//         throw error;
+//     }
+// };
     
 export const getRequestToken = async (codeClient) => {
     
@@ -93,10 +91,9 @@ export const getRequestToken = async (codeClient) => {
                 },
             }
         );
-
         localStorage.setItem('client_refresh_token_spotify', response.data.refresh_token)
     } catch (error) {
-        console.error(error);
+        // console.error(error);
     } finally {
         window.location.reload();
     }
@@ -121,6 +118,6 @@ export const getRefreshToken = async (reftoken) => {
 
         localStorage.setItem('client_token_spotify', response.data.access_token);
     } catch (error) {
-        console.error(error);
+        // console.error(error);
     }
 };
