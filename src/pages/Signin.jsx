@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import Spotiku from '@/layouts/Spotiku'
+import Smufy from '@/layouts/Smufy'
 import { LOGIN_URL } from '@/api/spotify'
 import { useNavigate } from 'react-router-dom'
 import { CheckIcon } from '@heroicons/react/24/outline'
@@ -22,10 +22,10 @@ export default function Signin() {
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <Spotiku
-            title='Signin — Spotiku.'
-            kw='spotiku singin, spotiku login, spotiku masuk id, spotiku masuk indonesia '
-            desc='Signin | Masuk dengan Akun Spotifymu untuk menjelajahi Spotiku'
+        <Smufy
+            title='Signin — Smufy.'
+            kw='smufy singin, smufy login, smufy masuk id, smufy masuk indonesia '
+            desc='Signin | Masuk dengan Akun Spotifymu untuk menjelajahi Smufy'
         >
             <main
                 className={`signin-component`}
@@ -35,7 +35,7 @@ export default function Signin() {
                     <article className='headline-container-signin'>
                         <div className='grid content-center h-screen'>
                             <HeadPrimary
-                                title='SPOTIKU'
+                                title='SMUFY'
                                 classFunc={'text-neutral-900'}
                                 classHeading='montserrat text-[2.5rem] 4xs:text-[8vw] font-bold text-center'
                             />
@@ -63,6 +63,6 @@ export default function Signin() {
                 }
                 </section>
             </main>
-        </Spotiku>
+        </Smufy>
     )
 }

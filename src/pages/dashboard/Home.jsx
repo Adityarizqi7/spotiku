@@ -126,7 +126,7 @@ const Home = () => {
     return (
         <DashboardLayout
             title = 'Home — Explore and Discover Your Personal Spotify Statistics'
-            kw = 'spotiku home, spotiku beranda id, spotiku beranda indonesia'
+            kw = 'smufy home, smufy beranda id, smufy beranda indonesia'
             desc = 'Home | Halaman beranda untuk menampilkan highlight spotify mu'
             page_name='Home'
         >
@@ -299,7 +299,7 @@ const Home = () => {
                         }
                         </div>
                     }
-                    <NavLink to={'/'}>
+                    <NavLink to={'/recently-played'}>
                         <RippleBtn
                             className='more-button 5xs:block hidden mt-5 manrope text-center bg-slate-800/90 p-[10px] rounded-[5px] focus:outline-none hover:bg-slate-900 transition-colors'
                         >
