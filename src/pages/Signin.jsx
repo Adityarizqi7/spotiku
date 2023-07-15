@@ -23,7 +23,7 @@ export default function Signin() {
 
     return (
         <Smufy
-            title='Signin — Smufy.'
+            title={'Signin - Smufy'}
             kw='smufy singin, smufy login, smufy masuk id, smufy masuk indonesia '
             desc='Signin | Masuk dengan Akun Spotifymu untuk menjelajahi Smufy'
         >

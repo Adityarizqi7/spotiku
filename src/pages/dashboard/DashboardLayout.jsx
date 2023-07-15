@@ -115,10 +115,10 @@ const DashboardLayout =({
                         <section className="content-component w-[80%] px-10 2xs:px-5">
                             <div className="breadcumbs-profile-wrapper py-8 2xs:py-5 md:flex hidden justify-between">
                                 <div className="breadcumbs flex items-center gap-5">
-                                    <RippleBtn 
-                                        onClick={handleGoBack}
-                                        className={`${history.length < 1 && 'cursor-not-allowed opacity-50'} breadcumbs__prev-button bg-green-base/30 p-[10px] rounded-[12px] focus:outline-none hover:bg-green-base/40 transition-colors`}>
+                                    <RippleBtn>
+                                        <div onClick={handleGoBack} className={`${history.length < 1 && 'cursor-not-allowed opacity-50'} breadcumbs__prev-button bg-green-base/30 p-[10px] rounded-[12px] focus:outline-none hover:bg-green-base/40 transition-colors`}>
                                             <ChevronLeftIcon className='w-6 h-6 text-green-base' />
+                                        </div>
                                     </RippleBtn>
                                     <div aria-current="page">
                                         <h3 className="text-[14px] font-semibold text-slate-500 manrope">{page_name}</h3>

@@ -125,7 +125,7 @@ const Home = () => {
 
     return (
         <DashboardLayout
-            title = 'Home — Explore and Discover Your Personal Spotify Statistics'
+            title = 'Smufy — Explore and Discover Your Personal Spotify Statistics'
             kw = 'smufy home, smufy beranda id, smufy beranda indonesia'
             desc = 'Home | Halaman beranda untuk menampilkan highlight spotify mu'
             page_name='Home'
@@ -175,7 +175,7 @@ const Home = () => {
                                         className='w-[300px] aspect-137'
                                         link={ele?.external_urls?.spotify}
                                         textBelow={ele?.artists?.[0]?.name}
-                                        caption_light={`<h4 style='font-family: manrope;'>${ele?.name} from ${ele?.artists?.[0]?.name} - Spotiku</h4>`}
+                                        caption_light={`<h4 style='font-family: manrope;'>${ele?.name} from ${ele?.artists?.[0]?.name} - Smufy</h4>`}
                                     />
                                 </div>
                             ))                           
@@ -206,7 +206,7 @@ const Home = () => {
                                             <div className="name-image col-span-2 xxs:col-span-1">
                                                 <LightImage
                                                     path={ele?.track?.album?.images?.[0]?.url}
-                                                    caption={`<h4 style='font-family: manrope;'>${ele?.track?.name} from ${ele?.track?.artists?.[0]?.name} - Spotiku</h4>`}
+                                                    caption={`<h4 style='font-family: manrope;'>${ele?.track?.name} from ${ele?.track?.artists?.[0]?.name} - Smufy</h4>`}
                                                 >
                                                     <AvatarTrack 
                                                         className='w-[54px] h-[54px]'
@@ -272,7 +272,7 @@ const Home = () => {
                             title='Recently Played'
                             classHeading='font-bold text-slate-900 manrope text-[20px]'
                         />
-                        <Link to={'/'}>
+                        <Link to={'/recently-played'}>
                             <h2 className='manrope hover:text-green-base 5xs:hidden'>See all</h2>
                         </Link>
                     </div>
@@ -283,7 +283,7 @@ const Home = () => {
                         <div className='grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 6xs:grid-cols-1 gap-y-7 gap-x-8 6xs:gap-x-0 mt-6'>
                         {
                             recentlyPlayed?.items?.slice(0, 10)?.map((ele, idx) => (
-                                <div key={idx + 1} className="new-release__box-item manrope">
+                                <div key={idx + 1} className="recently-played__box-item manrope">
                                     <AvatarTrackSquare
                                         alt={ele?.track?.name}
                                         textAbove={ele?.track?.name}
@@ -292,7 +292,7 @@ const Home = () => {
                                         textBelow={ele?.track?.artists?.[0]?.name}
                                         path={ele?.track?.album?.images?.[1]?.url}
                                         path_light={ele?.track?.album?.images?.[1]?.url}
-                                        caption_light={`<h4 style='font-family: manrope;'>${ele?.track?.name} from ${ele?.track?.artists?.[0]?.name} - Spotiku</h4>`}
+                                        caption_light={`<h4 style='font-family: manrope;'>${ele?.track?.name} from ${ele?.track?.artists?.[0]?.name} - Smufy</h4>`}
                                     />
                                 </div>
                             ))                           

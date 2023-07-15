@@ -55,7 +55,7 @@ const Smufy = ({
 }
 
 Smufy.propTypes= {
-    title: PropTypes.object.isRequired,
+    title: PropTypes.string.isRequired,
     kw: PropTypes.string.isRequired,
     desc: PropTypes.string.isRequired,
     ogUrl: PropTypes.string,

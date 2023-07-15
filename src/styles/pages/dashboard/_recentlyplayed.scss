@@ -2,5 +2,43 @@
     @media only screen and (max-width: 767px) {
         padding-top: 1rem;
     }
-    padding-bottom: 6rem;
+    padding-bottom: 10rem;
+
+    .played_statistic {
+        .announcement-grafik {
+            @media only screen and (max-width: 340px) {
+                gap: 1rem;
+                flex-direction: column;
+            }
+            &>* {
+                @media only screen and (max-width: 340px) {
+                    justify-content: center;
+                   width: 100%;
+                }
+            }
+        }
+    }
+
+    .played__track-artists-wrapper {
+        .played__artists {
+            scrollbar-width: none;
+            scrollbar-gutter: none
+        }
+    }
+    .played__story {
+        top: 5rem;
+        width: 1080px;
+        height: 1920px;
+        // display: none;
+        position: absolute;
+
+        .story__content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    } 
+      
 }
