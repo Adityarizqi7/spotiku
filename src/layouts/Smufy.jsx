@@ -5,10 +5,10 @@ import { Helmet, HelmetProvider } from 'react-helmet-async'
 // import TopBar from '@/components/navbar/Topbar'
 import BtnToTop from '@/components/button/BtnToTop'
 
-const Spotiku = ({
-        title = 'Spotiku — Explore and Discover Your Personal Spotify Statistics ',
-        kw = 'spotiku, spotiku id, spotiku indonesia',
-        desc = 'Spotiku | Tempat untuk melihat lebih jauh statistik spotify personalmu',
+const Smufy = ({
+        title = 'Smufy — Explore and Discover Your Personal Spotify Statistics ',
+        kw = 'smufy, smufy id, smufy indonesia',
+        desc = 'Smufy | Tempat untuk melihat lebih jauh statistik spotify personalmu',
         ogUrl,
         ogType,
         ogTitle,
@@ -54,8 +54,8 @@ const Spotiku = ({
     )
 }
 
-Spotiku.propTypes= {
-    title: PropTypes.object.isRequired,
+Smufy.propTypes= {
+    title: PropTypes.string.isRequired,
     kw: PropTypes.string.isRequired,
     desc: PropTypes.string.isRequired,
     ogUrl: PropTypes.string,
@@ -66,4 +66,4 @@ Spotiku.propTypes= {
     children: PropTypes.any,
 }
 
-export default Spotiku
+export default Smufy

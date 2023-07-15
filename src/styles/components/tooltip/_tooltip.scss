@@ -3,7 +3,7 @@
     display: inline;
     
     .tooltip {
-        left: 0%;
+        left: 50%;
         top: -40px;
         z-index: 1;
         padding: 8px;
@@ -13,7 +13,7 @@
         position: absolute;
         white-space: nowrap;
         pointer-events: none;
-        // transform: translateX(-50%);
+        transform: translateX(-50%);
         background-color: rgb(27, 27, 27);
     }
 

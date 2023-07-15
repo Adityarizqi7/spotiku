@@ -6,7 +6,8 @@ import 'lightgallery/scss/lightgallery-bundle.scss'
 import Tooltip from '../tooltip/Tooltip';
 import { CrownIcon } from '../icon/IconList';
 import LightImage from '../image/LightImage';
-import { getFirstLetter, limitString } from '@/utils/Text';
+import { PlayIcon } from '@heroicons/react/24/solid';
+import { convertMiliToMinute, getFirstLetter, limitString } from '@/utils/Text';
 
 
 export function AvatarProfilePremium({path, alt, textAbove, textBelow, name, className}) {
@@ -35,7 +36,7 @@ export function AvatarProfilePremium({path, alt, textAbove, textBelow, name, cla
                                                     ? 0.5
                                                     : 1,
                                         }}
-                                        className="progressive-image no-script" src={src} alt={alt} 
+                                        className="progressive-image no-script object-cover cursor-pointer hover:scale-[1.5] transition-transform" src={src} alt={alt} 
                                     />
                                 </noscript>
                             </div>
@@ -88,7 +89,7 @@ export function AvatarProfileFree({path, alt, textAbove, textBelow, name, classN
                                                     ? 0.5
                                                     : 1,
                                         }}
-                                        className="progressive-image no-script" src={src} alt={alt} 
+                                        className="progressive-image no-script object-cover cursor-pointer hover:scale-[1.5] transition-transform" src={src} alt={alt} 
                                     />
                                 </noscript>
                             </div>
@@ -142,7 +143,7 @@ export function AvatarTrack({path, alt, text, className, classWrapper}) {
                                                     ? 0.5
                                                     : 1,
                                         }}
-                                        className="progressive-image no-script" src={src} alt={alt} 
+                                        className="progressive-image no-script bject-cover cursor-pointer hover:scale-[1.5] transition-transform" src={src} alt={alt} 
                                     />
                                 </noscript>
                             </div>
@@ -159,7 +160,7 @@ export function AvatarTrack({path, alt, text, className, classWrapper}) {
 
 export function AvatarTrackSquare({path, alt, path_light, caption_light, textAbove, textBelow, link, className}) {
     return (
-        <div className='manrope'>
+        <div className='manrope relative'>
         {
             path ?
                 <LightImage
@@ -187,7 +188,7 @@ export function AvatarTrackSquare({path, alt, path_light, caption_light, textAbo
                                                         ? 0.5
                                                         : 1,
                                             }}
-                                            className="progressive-image no-script" src={src} alt={alt} 
+                                            className="progressive-image no-script object-cover cursor-pointer hover:scale-[1.5] transition-transform" src={src} alt={alt} 
                                         />
                                     </noscript>
                                 </div>
@@ -206,6 +207,102 @@ export function AvatarTrackSquare({path, alt, path_light, caption_light, textAbo
                 </Tooltip>
             </a>
             <h2 className='font-medium text-[12px] text-slate-500 mt-1'>{textBelow}</h2>
+        </div>
+    )
+}
+
+export function AvatarTrackSquareStory({path, alt, textBelow, textAbove, className}) {
+    return (
+        <div className='manrope pb-4'>
+        {
+            path ?
+                <div className='rounded-[3px]'>
+                    <img
+                        className={"progressive-image object-cover " + className} src={path} alt={alt}
+                    />
+                    <noscript>
+                        <img 
+                            className="progressive-image no-script object-cover" src={path} alt={alt} 
+                        />
+                    </noscript>
+                </div>
+            :
+                null //BG NULL Nantinya
+        }   
+            <h1 className='font-semibold text-[1.85rem] text-gray-800 line-clamp-1 mt-1 pb-2'>{textAbove}</h1>
+            <h2 className='font-medium text-[1.5rem] text-gray-500'>{textBelow}</h2>
+        </div>
+    )
+}
+
+export function TrackSquare({textBelow, textAbove, duration}) {
+    return (
+        <div className='manrope pb-2 flex justify-between'>
+            <div className='name-track mt-1'>
+                <h1 className='font-semibold text-[1.85rem] text-gray-100'>{textAbove}</h1>
+                <h2 className='font-medium text-[1.5rem] text-gray-500'>{textBelow}</h2>
+            </div>
+            <div className="duration-track">
+                <h2 className='font-medium text-[1.5rem] text-gray-300'>{convertMiliToMinute(duration)}</h2>
+            </div>
+        </div>
+    )
+}
+
+export function AvatarTrackSquareWithPlay({path, alt, path_light, caption_light, textAbove, textBelow, link, link_second, className}) {
+    return (
+        <div className='manrope relative'>
+        {
+            path ?
+                <LightImage
+                    path={path_light}
+                    caption={caption_light}
+                >
+                    <ProgressiveImage src={path} placeholder={path} >
+                        {(src, loading) => {
+                            return (
+                                <div className='relative overflow-hidden rounded-[3px]'>
+                                    <img 
+                                        style={{
+                                            opacity:
+                                                loading
+                                                    ? 0.5
+                                                    : 1,
+                                        }}
+                                        className={"progressive-image object-cover cursor-pointer hover:scale-[1.5] transition-transform " + className} src={src} alt={alt}
+                                    />
+                                    <noscript>
+                                        <img 
+                                            style={{
+                                                opacity:
+                                                    loading
+                                                        ? 0.5
+                                                        : 1,
+                                            }}
+                                            className="progressive-image no-script object-cover cursor-pointer hover:scale-[1.5] transition-transform" src={src} alt={alt} 
+                                        />
+                                    </noscript>
+                                </div>
+                            );
+                        }}
+                    </ProgressiveImage>
+                </LightImage>
+            :
+                null //BG NULL Nantinya
+        }
+            <a href={link} target="_blank" rel="noopener noreferrer">
+                <Tooltip
+                    text={textAbove}
+                >
+                    <h1 className='font-semibold text-[16px] text-slate-800 hover:text-green-base mt-2 line-clamp-1'>{limitString(textAbove, 17)}</h1>
+                </Tooltip>
+            </a>
+            <h2 className='font-medium text-[12px] text-slate-500 mt-1'>{textBelow}</h2>
+            <a href={link_second} target="_blank" rel="noopener noreferrer" className='cursor-pointer'>
+                <div className="absolute -right-2 bottom-[2.75rem] bg-green-base p-2 rounded-full shadow-own hover:bg-slate-100 text-slate-100 hover:text-slate-800 transition-colors">
+                    <PlayIcon className='w-5 h-5' />
+                </div>
+            </a>
         </div>
     )
 }
@@ -239,6 +336,31 @@ AvatarTrack.propTypes= {
 AvatarTrackSquare.propTypes= {
     alt: PropTypes.string,
     link: PropTypes.string,
+    path: PropTypes.string,
+    className: PropTypes.string,
+    path_light: PropTypes.string,
+    caption_light: PropTypes.string,
+    textAbove: PropTypes.any,
+    textBelow: PropTypes.any,
+}
+TrackSquare.propTypes= {
+    duration: PropTypes.number,
+    textAbove: PropTypes.any,
+    textBelow: PropTypes.any,
+}
+
+AvatarTrackSquareStory.propTypes= {
+    alt: PropTypes.string,
+    path: PropTypes.string,
+    className: PropTypes.string,
+    textAbove: PropTypes.any,
+    textBelow: PropTypes.any,
+}
+
+AvatarTrackSquareWithPlay.propTypes= {
+    alt: PropTypes.string,
+    link: PropTypes.string,
+    link_second: PropTypes.string,
     path: PropTypes.string,
     className: PropTypes.string,
     path_light: PropTypes.string,

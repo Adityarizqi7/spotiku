@@ -1,4 +1,4 @@
-import Spotiku from "@/layouts/Spotiku";
+import Smufy from "@/layouts/Smufy";
 import { useNavigate } from "react-router-dom";
 
 export default function NotFound() {
@@ -6,9 +6,9 @@ export default function NotFound() {
     const navigate = useNavigate()
 
     return(
-        <Spotiku
+        <Smufy
             title='404 | Halaman tidak ditemukan'
-            kw='aditya rizqi ardhana site not found, aditya rizqi ardhana site halaman tidak ditemukan, aditya rizqi ardhana site, aditya rizqi ardhana site halaman tidak ditemukan'
+            kw='smufy site not found, smufy site halaman tidak ditemukan, smufy site, smufy site halaman tidak ditemukan'
             desc='404 | Halaman tidak ditemukan'
         >
             <div className='mx-auto px-2 py-20'>
@@ -34,6 +34,6 @@ export default function NotFound() {
                     </button>
                 </div>
             </div>
-        </Spotiku>
+        </Smufy>
     )
 }

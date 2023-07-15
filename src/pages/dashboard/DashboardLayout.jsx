@@ -6,7 +6,7 @@ import spotify, { getParamsFromUrl, getRefreshToken, getRequestToken, STATE } fr
 
 import '../../styles/pages/dashboard/_dashboardlayout.scss'
 
-import SpotikuDash from '@/layouts/SpotikuDash'
+import SmufyDash from '@/layouts/SmufyDash'
 import DotWave from '@/components/loading/Dot'
 import LeftBar from '@/components/navbar/LeftBar'
 import { Menu, Transition } from '@headlessui/react'
@@ -16,9 +16,9 @@ import { BottomBar } from '@/components/navbar/BottomBar'
 import { AvatarProfileFree, AvatarProfilePremium } from '@/components/profile/Avatar'
 
 const DashboardLayout =({
-    title = 'Spotiku — Explore and Discover Your Personal Spotify Statistics.',
-    kw = 'spotiku, spotiku beranda, spotiku beranda id, spotiku beranda indonesia',
-    desc = 'Spotiku | Tempat untuk melihat lebih jauh statistik spotify personalmu',
+    title = 'Smufy — Explore and Discover Your Personal Spotify Statistics.',
+    kw = 'smufy, smufy beranda, smufy beranda id, smufy beranda indonesia',
+    desc = 'Smufy | Tempat untuk melihat lebih jauh statistik spotify personalmu',
     page_name,
     children 
 }) => {
@@ -88,7 +88,7 @@ const DashboardLayout =({
        history.length > 1 && navigate(-1)
     };
 
-    const handleSignoutSpotiku = () => {
+    const handleSignoutSmufy = () => {
         const itemsToRemove = [
           'client_code_spotify',
           'client_token_spotify',
@@ -103,7 +103,7 @@ const DashboardLayout =({
     };
       
     return (
-        <SpotikuDash
+        <SmufyDash
             title={title}
             kw={kw}
             desc={desc}
@@ -115,10 +115,10 @@ const DashboardLayout =({
                         <section className="content-component w-[80%] px-10 2xs:px-5">
                             <div className="breadcumbs-profile-wrapper py-8 2xs:py-5 md:flex hidden justify-between">
                                 <div className="breadcumbs flex items-center gap-5">
-                                    <RippleBtn 
-                                        onClick={handleGoBack}
-                                        className={`${history.length < 1 && 'cursor-not-allowed opacity-50'} breadcumbs__prev-button bg-green-base/30 p-[10px] rounded-[12px] focus:outline-none hover:bg-green-base/40 transition-colors`}>
+                                    <RippleBtn>
+                                        <div onClick={handleGoBack} className={`${history.length < 1 && 'cursor-not-allowed opacity-50'} breadcumbs__prev-button bg-green-base/30 p-[10px] rounded-[12px] focus:outline-none hover:bg-green-base/40 transition-colors`}>
                                             <ChevronLeftIcon className='w-6 h-6 text-green-base' />
+                                        </div>
                                     </RippleBtn>
                                     <div aria-current="page">
                                         <h3 className="text-[14px] font-semibold text-slate-500 manrope">{page_name}</h3>
@@ -181,7 +181,7 @@ const DashboardLayout =({
                                                 <div className='px-1 py-1'>
                                                     <Menu.Item>
                                                         <button
-                                                        onClick={handleSignoutSpotiku}
+                                                        onClick={handleSignoutSmufy}
                                                         className='w-full px-2 py-2 text-left text-pink-base hover:bg-pink-base/40 hover:text-slate-100 rounded-md'
                                                         >Signout</button>
                                                     </Menu.Item>
@@ -197,7 +197,7 @@ const DashboardLayout =({
                     </div>
                 </section>
             </article> 
-        </SpotikuDash>
+        </SmufyDash>
     )
 }
 

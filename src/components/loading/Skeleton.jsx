@@ -22,9 +22,20 @@ export function SkeletonRectangle({className}) {
     )
 }
 
+export function SkeletonCircle({className}) {
+    return (
+        <div className={"box-skeleton " + className}>
+            <div className="box__inside-first w-[84px] h-[84px] rounded-full"></div>
+        </div>
+    )
+}
+
 SkeletonSquare.propTypes= {
     className: PropTypes.string,
 }
 SkeletonRectangle.propTypes= {
+    className: PropTypes.string,
+}
+SkeletonCircle.propTypes= {
     className: PropTypes.string,
 }
