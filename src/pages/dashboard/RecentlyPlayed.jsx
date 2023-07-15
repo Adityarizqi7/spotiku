@@ -456,8 +456,8 @@ const RecentlyPlayed = () => {
                         </Transition.Child>
                     </div>
                 </Transition>
-                <div className="played__story manrope">
-                    <div className="story__content bg-[#0b1120] shadow-own p-10 w-full hidden" ref={imageShareRef}>
+                <div className="played__story manrope hidden" ref={imageShareRef}>
+                    <div className="story__content bg-[#0b1120] shadow-own p-10 w-full">
                         <div className="content__title-logo flex flex-col items-center justify-center mt-5 w-full">
                             <SpotifyIcon width={'200'} />
                             <div className='space-y-6'>
