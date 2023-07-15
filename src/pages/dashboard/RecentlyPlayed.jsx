@@ -17,6 +17,7 @@ import LightImage from '@/components/image/LightImage'
 import { SkeletonCircle, SkeletonSquare } from '@/components/loading/Skeleton'
 import { AvatarTrackSquareStory, AvatarTrackSquareWithPlay, TrackSquare } from '@/components/profile/Avatar'
 import { ChartIcon, ClockIcon, ImageIcon, MicIcon, MusicIcon, SpotifyIcon } from '@/components/icon/IconList'
+import RippleBtn from '@/components/button/RippleBtn';
 
 const RecentlyPlayed = () => {
 
@@ -27,8 +28,8 @@ const RecentlyPlayed = () => {
     const [isOpenChart, setIsOpenCHart] = useState(false)
     
     const [trackPlays, setTrackPlays] = useState([]);
-    const [totalDuration, setTotalDuration] = useState(0);
     const [loadingMore, setLoadingMore] = useState(false);
+    const [totalDuration, setTotalDuration] = useState(0);
     const [recentlyPlayed, setRecentlyPlayed] = useState([]);
     const [recentlyPlayedArtists, setRecentlyPlayedArtists] = useState([]);
     
@@ -37,6 +38,9 @@ const RecentlyPlayed = () => {
     const [trackCount, setTrackCount] = useState(initialTrackCount);
     
     sessionStorage.setItem('trackCount', JSON.stringify(trackCount));
+
+    const sortedTracks = trackPlays.sort((a, b) => b.plays - a.plays);
+    const mostPlayedTrack = sortedTracks?.[0];
 
     const getRecentlyPlayed = useCallback(async () => {
         setLoading(true);
@@ -173,28 +177,16 @@ const RecentlyPlayed = () => {
         }
     }, [getArtistData]);
 
-    const handleScroll = useCallback(() => {
-        if (
-            window.innerHeight + document.documentElement.scrollTop !==
-            document.documentElement.offsetHeight ||
-            loading ||
-            trackCount >= 50
-        ) {
-            return;
-        }
-        setLoadingMore(true);
-        setTimeout(() => {
-            setTrackCount(prevTrackCount => prevTrackCount + 5);
-            setLoadingMore(false);
-        }, 1000);
-    }, [loading, trackCount]);
-    
     function handleOpenChart() {
         setIsOpenCHart(!isOpenChart)
     }
-
-    const sortedTracks = trackPlays.sort((a, b) => b.plays - a.plays);
-    const mostPlayedTrack = sortedTracks?.[0];
+    const getMoreTracks = () => {
+        setLoadingMore(true);
+        setTimeout(() => {
+          setTrackCount(prevTrackCount => prevTrackCount + 5);
+          setLoadingMore(false);
+        }, 500);
+    };
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -213,14 +205,6 @@ const RecentlyPlayed = () => {
     }, []);
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll)
-        }
-    }, [handleScroll]); 
-
-    useEffect(() => {
         getRecentlyPlayed();
         getRecentlyPlayedArtists()
     }, [getRecentlyPlayed, getRecentlyPlayedArtists]);
@@ -236,7 +220,6 @@ const RecentlyPlayed = () => {
 
         const html2canvasOptions = {
             scale: 2,
-            dpi: 600,
             useCORS: true,
             scrollY: -window.scrollY,
         };
@@ -255,6 +238,30 @@ const RecentlyPlayed = () => {
             elementToCapture.style.display = originalDisplay;
         });
     }, [imageShareRef]);
+
+    // const handleScroll = useCallback(() => {
+    //     if (
+    //         window.innerHeight + document.documentElement.scrollTop !==
+    //         document.documentElement.offsetHeight ||
+    //         loading ||
+    //         trackCount >= 50
+    //     ) {
+    //         return;
+    //     }
+    //     setLoadingMore(true);
+    //     setTimeout(() => {
+    //         setTrackCount(prevTrackCount => prevTrackCount + 5);
+    //         setLoadingMore(false);
+    //     }, 1000);
+    // }, [loading, trackCount]);
+
+    // useEffect(() => {
+    //     window.addEventListener('scroll', handleScroll);
+
+    //     return () => {
+    //         window.removeEventListener('scroll', handleScroll)
+    //     }
+    // }, [handleScroll]); 
 
     return (
         <DashboardLayout
@@ -291,7 +298,7 @@ const RecentlyPlayed = () => {
                             <Flex justifyContent="between" className="space-x-4">
                                 <div className="truncate space-y-2">
                                     <Metric>{loading ? '0' : trackCount}</Metric>
-                                    <Text>Total Songs</Text>
+                                    <Text>Total Tracks of 50</Text>
                                 </div>
                                 <div className='5xs:hidden'>
                                     <MusicIcon size='33'/>
@@ -373,31 +380,45 @@ const RecentlyPlayed = () => {
                         loading ?
                             <SkeletonSquare className='mt-6 3xs:mt-3' />
                         :
-                        <div className='grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 6xs:grid-cols-1 gap-y-7 gap-x-8 6xs:gap-x-0'>
-                        {
-                            recentlyPlayed?.slice(0, trackCount)?.map((ele, idx) => (
-                                <div key={idx + 1} className="new-release__box-item manrope">
-                                    <AvatarTrackSquareWithPlay
-                                        alt={ele?.track?.name}
-                                        textAbove={ele?.track?.name}
-                                        className='w-[300px] aspect-137'
-                                        link={ele?.track?.external_urls?.spotify}
-                                        textBelow={ele?.track?.artists?.[0]?.name}
-                                        path={ele?.track?.album?.images?.[1]?.url}
-                                        path_light={ele?.track?.album?.images?.[1]?.url}
-                                        link_second={ele?.track?.external_urls?.spotify}
-                                        caption_light={`<h4 style='font-family: manrope;'>${ele?.track?.name} from ${ele?.track?.artists?.[0]?.name} - Smufy</h4>`}
-                                    />
-                                </div>
-                            ))                           
-                        }
-                        </div>
-                    }
-                    {
-                        loadingMore &&
-                        <div className="mt-7 flex justify-center">
-                            <DotWave />
-                        </div>
+                        <>
+                            <div className='grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 6xs:grid-cols-1 gap-y-7 gap-x-8 6xs:gap-x-0'>
+                            {
+                                recentlyPlayed?.slice(0, trackCount)?.map((ele, idx) => (
+                                    <div key={idx + 1} className="new-release__box-item manrope">
+                                        <AvatarTrackSquareWithPlay
+                                            alt={ele?.track?.name}
+                                            textAbove={ele?.track?.name}
+                                            className='w-[300px] aspect-137'
+                                            link={ele?.track?.external_urls?.spotify}
+                                            textBelow={ele?.track?.artists?.[0]?.name}
+                                            path={ele?.track?.album?.images?.[1]?.url}
+                                            path_light={ele?.track?.album?.images?.[1]?.url}
+                                            link_second={ele?.track?.external_urls?.spotify}
+                                            caption_light={`<h4 style='font-family: manrope;'>${ele?.track?.name} from ${ele?.track?.artists?.[0]?.name} - Smufy</h4>`}
+                                        />
+                                    </div>
+                                ))                           
+                            }
+                            </div>
+                            <>
+                            {
+                                trackCount <= 50 &&
+                                loadingMore ?
+                                    <div className="mt-7 flex justify-center">
+                                        <DotWave />
+                                    </div>
+                                :
+                                    <button
+                                        className='more-button w-full mt-5 manrope text-center bg-slate-800/90 p-[10px] rounded-[5px] focus:outline-none hover:bg-slate-900 transition-colors'
+                                        onClick={getMoreTracks}
+                                    >
+                                        <RippleBtn>
+                                            <h3>More track</h3>
+                                        </RippleBtn>
+                                    </button>
+                            }
+                            </>
+                        </>
                     }
                     </div>
                 </div>
@@ -435,8 +456,8 @@ const RecentlyPlayed = () => {
                         </Transition.Child>
                     </div>
                 </Transition>
-                <div className="played__story manrope hidden" ref={imageShareRef}>
-                    <div className="story__content bg-[#0b1120] flex flex-col justofy-between shadow-own p-10 w-full">
+                <div className="played__story manrope">
+                    <div className="story__content bg-[#0b1120] shadow-own p-10 w-full hidden" ref={imageShareRef}>
                         <div className="content__title-logo flex flex-col items-center justify-center mt-5 w-full">
                             <SpotifyIcon width={'200'} />
                             <div className='space-y-6'>
