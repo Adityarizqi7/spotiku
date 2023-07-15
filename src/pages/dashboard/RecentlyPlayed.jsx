@@ -270,7 +270,7 @@ const RecentlyPlayed = () => {
             desc = 'Recently Played | Halaman untuk menampilkan apa saja yang telah kamu putar di Akun Spotify mu'
             page_name='Recently Played'
         >
-            <section className={`recently-played-component relative`}>
+            <section className={`recently-played-component relative ${trackCount > 10 && 'pb-10'}`}>
                 <div className="played_statistic mt-4 space-y-5">
                     <div className="announcement-grafik flex items-center justify-end gap-2">
                         <div className="icon icon-image cursor-pointer flex items-center gap-2 manrope py-3 px-7 rounded-full bg-yellow-400/40 hover:bg-yellow-500/50" ref={chartButtonRef} onClick={handleOpenChart}>
