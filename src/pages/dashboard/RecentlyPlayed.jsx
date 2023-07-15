@@ -474,7 +474,7 @@ const RecentlyPlayed = () => {
                     }
                     </div>
                 </div>
-                <div className="played__story manrope bg-[#0b1120]" ref={imageShareRef}>
+                <div className="played__story manrope bg-[#0b1120] hidden" ref={imageShareRef}>
                     <div className="story__content shadow-own w-full">
                         <div className="content__title-logo flex flex-col items-center justify-center mt-5 w-full">
                             <SpotifyIcon width={'200'} />
