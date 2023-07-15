@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import html2canvas from 'html2canvas';
-import { Transition } from '@headlessui/react'
+import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import ProgressiveImage from 'react-progressive-graceful-image'
 import { useCallback, useState, useEffect, Fragment } from 'react'
@@ -219,9 +219,8 @@ const RecentlyPlayed = () => {
         elementToCapture.style.display = 'block';
 
         const html2canvasOptions = {
-            scale: 2,
+            scale: 3,
             useCORS: true,
-            scrollY: -window.scrollY,
         };
         html2canvas(elementToCapture, html2canvasOptions)
         .then((canvas) => {
@@ -270,7 +269,7 @@ const RecentlyPlayed = () => {
             desc = 'Recently Played | Halaman untuk menampilkan apa saja yang telah kamu putar di Akun Spotify mu'
             page_name='Recently Played'
         >
-            <section className={`recently-played-component relative ${trackCount > 10 && 'pb-10'}`}>
+            <section className={`recently-played-component relative ${trackCount > 10 && 'md:pb-10 pb-[5.5rem]'}`}>
                 <div className="played_statistic mt-4 space-y-5">
                     <div className="announcement-grafik flex items-center justify-end gap-2">
                         <div className="icon icon-image cursor-pointer flex items-center gap-2 manrope py-3 px-7 rounded-full bg-yellow-400/40 hover:bg-yellow-500/50" ref={chartButtonRef} onClick={handleOpenChart}>
@@ -281,6 +280,59 @@ const RecentlyPlayed = () => {
                             <ImageIcon fill='#ffffff' stroke='#ffffff' />
                             <span className='truncate font-medium text-white'>Share</span>
                         </div>
+                        <Transition appear show={isOpenChart} as={Fragment} ref={chartRef}>
+                            <Dialog as="div" onClose={() => setIsOpenCHart(!isOpenChart)}>
+                                <div className="fixed inset-0 overflow-y-auto">
+                                    <div className="flex min-h-full items-center justify-center p-4 text-center">
+                                        <Transition.Child
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0"
+                                            enterTo="opacity-100"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                        >
+                                            <div className="fixed inset-0 bg-black bg-opacity-25" />
+                                        </Transition.Child>
+                                        <Transition.Child
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0 scale-95"
+                                            enterTo="opacity-100 scale-100"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100 scale-100"
+                                            leaveTo="opacity-0 scale-95"
+                                        >
+                                            <Dialog.Panel className='w-full rounded-2xl bg-white p-6 shadow-own manrope overflow-y-auto'>
+                                                <Card>
+                                                    <Title>Discover the overall number of recently tracks you have played on Spotify</Title>
+                                                    <LineChart
+                                                        className="mt-6 line-clamp-1 overflow-y-scroll"
+                                                        data={trackPlays}
+                                                        index="trackName"
+                                                        categories={["plays"]}
+                                                        colors={["green"]}
+                                                        valueFormatter={(value) => `${value} times`}
+                                                        yAxisWidth={40}
+                                                    />
+                                                    <div className="most-played-track mt-5 space-y-2">
+                                                        <Title className='font-semibold text-[20px] text-slate-800'>Most recently played tracks</Title>
+                                                        <Text className='text-slate-800 text-[1rem]'>
+                                                            That&apos;s impressive!
+                                                            <span className='font-medium italic'>{`"${loading ? 'loading' :  mostPlayedTrack?.trackName}" `}</span>
+                                                            has emerged as one of your top-played tracks on Spotify,
+                                                            <span>  with a total of <span className='font-medium'>{`${loading ? 0 : mostPlayedTrack?.plays}`}</span> plays.`</span>
+                                                        </Text>
+                                                    </div>
+                                                    <XMarkIcon className='w-6 h-6 absolute right-2 top-2 cursor-pointer hover:text-red-500' onClick={() => setIsOpenCHart(!isOpenChart)}/>
+                                                </Card>                                        
+                                            </Dialog.Panel>
+                                        </Transition.Child>
+                                    </div>
+                                </div>
+                            </Dialog>
+                        </Transition>
                     </div>
                     <Grid numItemsMd={2} numItemsLg={3} className="gap-6 place-content-between">
                         <Card className="box manrope space-y-2 px-5 py-3 rounded-[3px]">
@@ -422,42 +474,8 @@ const RecentlyPlayed = () => {
                     }
                     </div>
                 </div>
-                <Transition appear show={isOpenChart} as={Fragment} ref={chartRef}>
-                    <div className="sticky top-0 inset-0 h-screen">
-                        <Transition.Child
-                            as={Fragment}
-                            enter="ease-out duration-300"
-                            enterFrom="opacity-0 scale-95"
-                            enterTo="opacity-100 scale-100"
-                            leave="ease-in duration-200"
-                            leaveFrom="opacity-100 scale-100"
-                            leaveTo="opacity-0 scale-95"
-                        >
-                            <Card className='sticky top-6 md:h-[93vh] h-[85vh] rounded-2xl bg-white p-6 shadow-own manrope overflow-y-auto'>
-                                <Title>Discover the overall number of recently tracks you have played on Spotify</Title>
-                                <LineChart
-                                    className="mt-6 line-clamp-1 overflow-y-scroll"
-                                    data={trackPlays}
-                                    index="trackName"
-                                    categories={["plays"]}
-                                    colors={["green"]}
-                                    valueFormatter={(value) => `${value} times`}
-                                    yAxisWidth={40}
-                                />
-                                <div className="most-played-track mt-5 space-y-2">
-                                    <h1 className='font-semibold text-[20px]'>Most played tracks recently</h1>
-                                    <p>
-                                        <span className='font-medium'>{`${loading ? 'loading' :  mostPlayedTrack?.trackName}`}</span>
-                                        <span> by playing it <span className='font-medium'>{`${loading ? 0 : mostPlayedTrack?.plays}`}</span> times`</span>
-                                    </p>
-                                </div>
-                                <XMarkIcon className='w-6 h-6 absolute right-2 top-2 cursor-pointer hover:text-red-500' onClick={() => setIsOpenCHart(!isOpenChart)}/>
-                            </Card>
-                        </Transition.Child>
-                    </div>
-                </Transition>
-                <div className="played__story manrope hidden" ref={imageShareRef}>
-                    <div className="story__content bg-[#0b1120] shadow-own p-10 w-full">
+                <div className="played__story manrope bg-[#0b1120]" ref={imageShareRef}>
+                    <div className="story__content shadow-own w-full">
                         <div className="content__title-logo flex flex-col items-center justify-center mt-5 w-full">
                             <SpotifyIcon width={'200'} />
                             <div className='space-y-6'>
@@ -500,7 +518,7 @@ const RecentlyPlayed = () => {
                             })
                         }
                         </div>
-                        <div className="content__track gap-2 mt-[4.5rem]">
+                        <div className="content__track gap-2 mt-[4.5rem] px-10">
                         {
                             recentlyPlayed?.slice(3, 6)?.map((ele, idx) => {
                                 return (
