@@ -4,7 +4,7 @@ import { Base64 } from 'js-base64';
 
 const CLIENT_ID = 'e4aceda33ec947178d738ec2e9b74288'
 const CLIENT_SECRET = '1a44bda08b3a4eb6af426d686c34fe4d'
-const REDIRECT_URL_AFTER_SIGNIN = 'https://smufy.netlify.app/'
+const REDIRECT_URL_AFTER_SIGNIN = 'http://127.0.0.1:5173/'
 const basic = Base64.encode(`${CLIENT_ID}:${CLIENT_SECRET}`);   
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
@@ -18,6 +18,8 @@ const SCOPES = [
     'user-read-playback-state',
     'user-read-recently-played',
     'user-read-currently-playing',
+    'user-library-read',
+    'playlist-read-private',
 ]
 const SCOPES_URL_PARAM = SCOPES.join(SCOPES_DELIMITTER)
 

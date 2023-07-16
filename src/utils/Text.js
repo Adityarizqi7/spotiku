@@ -1,3 +1,5 @@
+import { getName } from 'country-list';
+
 export function getFirstLetter(text) {
     return text.split(' ')[0].substring(0, 1)
 }
@@ -14,4 +16,12 @@ export function convertMiliToMinute(time) {
 export function limitString(str, limit) {
     if (str.length <= limit) return str 
     return str.substring(0, limit) + '...'; 
+}
+
+export function countryList(code) {
+    const countryCode = code;
+    const countryName = getName(countryCode);
+
+    return countryName
+
 }

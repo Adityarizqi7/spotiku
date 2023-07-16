@@ -173,7 +173,7 @@ const DashboardLayout =({
                                             <Menu.Items className='absolute right-0 z-[2] mt-6 w-56 5xs:w-[7rem] divide-y divide-gray-100 rounded-md bg-white shadow-own manrope text-slate-800'>
                                                 <div className='px-1 py-1'>
                                                     <Menu.Item>
-                                                        <NavLink className='hover:bg-green-base/40 hover:text-slate-900 w-full px-2 py-2 rounded-md block' to="/">
+                                                        <NavLink className={({isActive}) => isActive ? 'bg-green-base/40 hover:bg-green-base/80 text-slate-800 w-full px-2 py-2 rounded-md block' : 'hover:bg-green-base/40 hover:text-slate-900 w-full px-2 py-2 rounded-md block'} to="/profile">
                                                             Profile
                                                         </NavLink>
                                                     </Menu.Item>    

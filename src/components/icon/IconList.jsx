@@ -51,6 +51,33 @@ export function PlaylistIcon({size='24', ...props}) {
         </svg>
     )
 }
+export function PlaySongIcon({size='24', ...props}) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none">
+            <path opacity="0.4" d="M11.97 22.0001C17.4928 22.0001 21.97 17.5229 21.97 12.0001C21.97 6.47722 17.4928 2.00007 11.97 2.00007C6.44715 2.00007 1.97 6.47722 1.97 12.0001C1.97 17.5229 6.44715 22.0001 11.97 22.0001Z" {...props}/>
+            <path d="M14.97 10.2301L12.07 8.56007C11.35 8.14007 10.48 8.14007 9.75999 8.56007C9.03999 8.98007 8.60999 9.72007 8.60999 10.5601V13.9101C8.60999 14.7401 9.03999 15.4901 9.75999 15.9101C10.12 16.1201 10.52 16.2201 10.91 16.2201C11.31 16.2201 11.7 16.1201 12.06 15.9101L14.96 14.2401C15.68 13.8201 16.11 13.0801 16.11 12.2401C16.13 11.4001 15.7 10.6501 14.97 10.2301Z" {...props}/>
+        </svg>
+    )
+}
+export function BubbleIcon({size='24', ...props}) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none">
+            <circle cx="17" cy="8" r="4" {...props} strokeWidth="2"/>
+            <circle cx="12" cy="17" r="3" {...props} strokeWidth="2"/>
+            <circle cx="6.5" cy="9.5" r="2.5" {...props} strokeWidth="2"/>
+        </svg>
+    )
+}
+export function PeopleIcon({size='24', ...props}) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none">
+            <path d="M9.16006 10.87C9.06006 10.86 8.94006 10.86 8.83006 10.87C6.45006 10.79 4.56006 8.84 4.56006 6.44C4.56006 3.99 6.54006 2 9.00006 2C11.4501 2 13.4401 3.99 13.4401 6.44C13.4301 8.84 11.5401 10.79 9.16006 10.87Z" {...props} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M16.41 4C18.35 4 19.91 5.57 19.91 7.5C19.91 9.39 18.41 10.93 16.54 11C16.46 10.99 16.37 10.99 16.28 11" {...props} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M4.15997 14.56C1.73997 16.18 1.73997 18.82 4.15997 20.43C6.90997 22.27 11.42 22.27 14.17 20.43C16.59 18.81 16.59 16.17 14.17 14.56C11.43 12.73 6.91997 12.73 4.15997 14.56Z" {...props} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M18.3401 20C19.0601 19.85 19.7401 19.56 20.3001 19.13C21.8601 17.96 21.8601 16.03 20.3001 14.86C19.7501 14.44 19.0801 14.16 18.3701 14" {...props} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    )
+}
 
 export function VolumeIcon({size='24', ...props}) {
     return (
@@ -134,7 +161,25 @@ export function StarIcon({...props}) {
     )
 }
 
-export function CrownIcon({firstColor = '#FFB932', secondColor = '#FDCB69'}) {
+export function CrownIconPremium() {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M11.3334 14.6667H4.66669C4.39335 14.6667 4.16669 14.44 4.16669 14.1667C4.16669 13.8933 4.39335 13.6667 4.66669 13.6667H11.3334C11.6067 13.6667 11.8334 13.8933 11.8334 14.1667C11.8334 14.44 11.6067 14.6667 11.3334 14.6667Z" fill="url(#paint0_linear_2_242)"/>
+            <path d="M13.5667 3.67999L10.9 5.58665C10.5467 5.83999 10.04 5.68665 9.88669 5.27999L8.62669 1.91999C8.41336 1.33999 7.59336 1.33999 7.38002 1.91999L6.11336 5.27332C5.96002 5.68665 5.46002 5.83999 5.10669 5.57999L2.44002 3.67332C1.90669 3.29999 1.20002 3.82665 1.42002 4.44665L4.19336 12.2133C4.28669 12.48 4.54002 12.6533 4.82002 12.6533H11.1734C11.4534 12.6533 11.7067 12.4733 11.8 12.2133L14.5734 4.44665C14.8 3.82665 14.0934 3.29999 13.5667 3.67999ZM9.66669 9.83332H6.33336C6.06002 9.83332 5.83336 9.60665 5.83336 9.33332C5.83336 9.05999 6.06002 8.83332 6.33336 8.83332H9.66669C9.94002 8.83332 10.1667 9.05999 10.1667 9.33332C10.1667 9.60665 9.94002 9.83332 9.66669 9.83332Z" fill="url(#paint1_linear_2_242)"/>
+            <defs>
+                <linearGradient id="paint0_linear_2_242" x1="8.00002" y1="13.6667" x2="8.00002" y2="14.6667" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#FFB932"/>
+                <stop offset="1" stopColor="#FDCB69"/>
+                </linearGradient>
+                <linearGradient id="paint1_linear_2_242" x1="7.99784" y1="1.48499" x2="7.99784" y2="12.6533" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#FFB932"/>
+                <stop offset="1" stopColor="#FDCB69"/>
+                </linearGradient>
+            </defs>
+        </svg>
+    )
+}
+export function CrownIconFree({firstColor, secondColor}) {
     return (
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="Icon/premium">
@@ -184,6 +229,18 @@ PlaylistIcon.propTypes= {
     props: PropTypes.string,
     size: PropTypes.string,
 }
+PeopleIcon.propTypes= {
+    props: PropTypes.string,
+    size: PropTypes.string,
+}
+BubbleIcon.propTypes= {
+    props: PropTypes.string,
+    size: PropTypes.string,
+}
+PlaySongIcon.propTypes= {
+    props: PropTypes.string,
+    size: PropTypes.string,
+}
 HeadphoneIcon.propTypes= {
     props: PropTypes.string,
     size: PropTypes.string,
@@ -209,7 +266,7 @@ ChartIcon.propTypes= {
 MusicIcon.propTypes= {
     size: PropTypes.string,
 }
-CrownIcon.propTypes= {
+CrownIconFree.propTypes= {
     firstColor: PropTypes.string,
     secondColor: PropTypes.string,
 }

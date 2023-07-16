@@ -1,16 +1,19 @@
 import PropTypes from 'prop-types'
+import { useLocation } from 'react-router-dom';
 import ProgressiveImage from 'react-progressive-graceful-image';
 
 import 'lightgallery/scss/lightgallery-bundle.scss'
 
 import Tooltip from '../tooltip/Tooltip';
-import { CrownIcon } from '../icon/IconList';
+import { CrownIconFree, CrownIconPremium } from '../icon/IconList';
 import LightImage from '../image/LightImage';
 import { PlayIcon } from '@heroicons/react/24/solid';
 import { convertMiliToMinute, getFirstLetter, limitString } from '@/utils/Text';
 
-
 export function AvatarProfilePremium({path, alt, textAbove, textBelow, name, className}) {
+
+    const location = useLocation();
+
     return (
         <div className='flex items-center space-x-3 manrope'>
         {
@@ -18,7 +21,7 @@ export function AvatarProfilePremium({path, alt, textAbove, textBelow, name, cla
                 <ProgressiveImage src={path} placeholder={path} >
                     {(src, loading) => {
                         return (
-                            <div className='rounded-full overflow-hidden relative'>
+                            <div className={`overflow-hidden relative rounded-full ${location.pathname === '/profile' && ' outline outline-1 outline-offset-2 outline-black'}`}>
                                 <img 
                                     style={{
                                         opacity:
@@ -26,7 +29,7 @@ export function AvatarProfilePremium({path, alt, textAbove, textBelow, name, cla
                                                 ? 0.5
                                                 : 1,
                                     }}
-                                    className={"progressive-image object-cover cursor-pointer hover:scale-[1.5] transition-transform " + className} src={src} alt={alt}
+                                    className={`progressive-image object-cover cursor-pointer hover:scale-[1.5] transition-transform " ${className} ${location.pathname === '/profile' && 'outline outline-1 outline-offset-2 outline-black'}`} src={src} alt={alt}
                                 />
                                 <noscript>
                                     <img 
@@ -36,7 +39,7 @@ export function AvatarProfilePremium({path, alt, textAbove, textBelow, name, cla
                                                     ? 0.5
                                                     : 1,
                                         }}
-                                        className="progressive-image no-script object-cover cursor-pointer hover:scale-[1.5] transition-transform" src={src} alt={alt} 
+                                        className={`progressive-image no-script object-cover cursor-pointer hover:scale-[1.5] transition-transform ${className} ${location.pathname === '/profile' && 'outline outline-1 outline-offset-2 outline-black'}`} src={src} alt={alt} 
                                     />
                                 </noscript>
                             </div>
@@ -56,7 +59,7 @@ export function AvatarProfilePremium({path, alt, textAbove, textBelow, name, cla
                 <div className='font-normal text-[12px] text-slate-500 capitalize flex gap-1 mt-1'>
                     <span>{textBelow}</span> 
                     <span>•</span>
-                    <CrownIcon /> 
+                    <CrownIconPremium /> 
                 </div>
             </div>
         </div>
@@ -64,6 +67,9 @@ export function AvatarProfilePremium({path, alt, textAbove, textBelow, name, cla
 }
 
 export function AvatarProfileFree({path, alt, textAbove, textBelow, name, className}) {
+
+    const location = useLocation();
+    
     return (
         <div className='flex items-center space-x-3 manrope'>
         {
@@ -71,7 +77,7 @@ export function AvatarProfileFree({path, alt, textAbove, textBelow, name, classN
                 <ProgressiveImage src={path} placeholder={path} >
                     {(src, loading) => {
                         return (
-                            <div className='overflow-hidden relative rounded-full'>
+                            <div className={`overflow-hidden relative rounded-full ${location.pathname === '/profile' && ' outline outline-1 outline-offset-2 outline-black'}`}>
                                 <img 
                                     style={{
                                         opacity:
@@ -79,7 +85,7 @@ export function AvatarProfileFree({path, alt, textAbove, textBelow, name, classN
                                                 ? 0.5
                                                 : 1,
                                     }}
-                                    className={"progressive-image object-cover cursor-pointer hover:scale-[1.5] transition-transform " + className} src={src} alt={alt}
+                                    className={`progressive-image object-cover cursor-pointer hover:scale-[1.5] transition-transform " ${className}`} src={src} alt={alt}
                                 />
                                 <noscript>
                                     <img 
@@ -89,7 +95,7 @@ export function AvatarProfileFree({path, alt, textAbove, textBelow, name, classN
                                                     ? 0.5
                                                     : 1,
                                         }}
-                                        className="progressive-image no-script object-cover cursor-pointer hover:scale-[1.5] transition-transform" src={src} alt={alt} 
+                                        className={`progressive-image object-cover cursor-pointer hover:scale-[1.5] transition-transform " ${className}`} src={src} alt={alt} 
                                     />
                                 </noscript>
                             </div>
@@ -109,7 +115,7 @@ export function AvatarProfileFree({path, alt, textAbove, textBelow, name, classN
                     <span>{textBelow}</span> 
                     <span>•</span>
                     <a href="https://www.spotify.com/id-id/premium/?ref=desktop_loggedin_upgrade_menu" target="_blank" rel="noopener noreferrer">
-                        <CrownIcon firstColor='#CBD5E1' secondColor='#CBD5C6' /> 
+                        <CrownIconFree firstColor='#CBD5E1' secondColor='#CBD5C6' /> 
                     </a>
                 </div>
             </div>

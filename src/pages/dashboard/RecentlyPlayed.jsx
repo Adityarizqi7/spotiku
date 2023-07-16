@@ -12,12 +12,12 @@ import { dayMDateY } from '@/utils/Time';
 import DotWave from '@/components/loading/Dot'
 import DashboardLayout from './DashboardLayout'
 import bgNull from '@/assets/images/bg-null.webp'
+import RippleBtn from '@/components/button/RippleBtn'
 import spotify, {getRefreshToken} from '@/api/spotify'
 import LightImage from '@/components/image/LightImage'
 import { SkeletonCircle, SkeletonSquare } from '@/components/loading/Skeleton'
 import { AvatarTrackSquareStory, AvatarTrackSquareWithPlay, TrackSquare } from '@/components/profile/Avatar'
 import { ChartIcon, ClockIcon, ImageIcon, MicIcon, MusicIcon, SpotifyIcon } from '@/components/icon/IconList'
-import RippleBtn from '@/components/button/RippleBtn';
 
 const RecentlyPlayed = () => {
 
@@ -322,10 +322,10 @@ const RecentlyPlayed = () => {
                                                             That&apos;s impressive!
                                                             <span className='font-medium italic'>{`"${loading ? 'loading' :  mostPlayedTrack?.trackName}" `}</span>
                                                             has emerged as one of your top-played tracks on Spotify,
-                                                            <span>  with a total of <span className='font-medium'>{`${loading ? 0 : mostPlayedTrack?.plays}`}</span> plays.`</span>
+                                                            <span>  with a total of <span className='font-medium'>{`${loading ? 0 : mostPlayedTrack?.plays}`}</span> plays.</span>
                                                         </Text>
                                                     </div>
-                                                    <XMarkIcon className='w-6 h-6 absolute right-2 top-2 cursor-pointer hover:text-red-500' onClick={() => setIsOpenCHart(!isOpenChart)}/>
+                                                    <XMarkIcon className='w-6 h-6 absolute right-2 top-2 cursor-pointer text-slate-100 hover:text-red-500' onClick={() => setIsOpenCHart(!isOpenChart)}/>
                                                 </Card>                                        
                                             </Dialog.Panel>
                                         </Transition.Child>

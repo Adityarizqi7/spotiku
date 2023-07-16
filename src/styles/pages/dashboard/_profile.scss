@@ -1,0 +1,88 @@
+.profile-component {
+    @media only screen and (max-width: 767px) {
+        padding-top: 1rem;
+    }
+    .profile__header {
+        .header__name-isSubscribe {
+            @media only screen and (max-width: 340px) {
+                gap: 3px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    } 
+    .profile__content {
+        .content__blend-playlist {
+            .blend__header {
+                @media only screen and (max-width: 140px) {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                } 
+                @media only screen and (max-width: 270px) {
+                    gap: 10px;
+                    align-items: start;
+                    flex-direction: column;
+                } 
+                > h1 {
+                    @media only screen and (max-width: 270px) {
+                        order: 2;
+                    } 
+                }
+                > a {
+                    @media only screen and (max-width: 270px) {
+                        order: 1;
+                    } 
+                }
+            }
+        }
+        .content__own-playlist {
+            .own__header {
+                @media only screen and (max-width: 140px) {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                } 
+                @media only screen and (max-width: 270px) {
+                    gap: 10px;
+                    align-items: start;
+                    flex-direction: column;
+                } 
+                > h1 {
+                    @media only screen and (max-width: 270px) {
+                        order: 2;
+                    } 
+                }
+                > a {
+                    @media only screen and (max-width: 270px) {
+                        order: 1;
+                    } 
+                }
+            }
+        }
+        .content__saved-album {
+            .saved-album__header {
+                @media only screen and (max-width: 140px) {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                } 
+                @media only screen and (max-width: 270px) {
+                    gap: 10px;
+                    align-items: start;
+                    flex-direction: column;
+                } 
+                > h1 {
+                    @media only screen and (max-width: 270px) {
+                        order: 2;
+                    } 
+                }
+                > a {
+                    @media only screen and (max-width: 270px) {
+                        order: 1;
+                    } 
+                }
+            }
+        }
+    }
+}

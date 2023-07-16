@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { AlbumIcon, FavoriteIcon, HomeIcon, PlaylistIcon } from "../icon/IconList";
+import { AlbumIcon, FavoriteIcon, HomeIcon, PlaySongIcon } from "../icon/IconList";
 
 export default function LeftBar() {
     return (
@@ -29,7 +29,7 @@ export default function LeftBar() {
                         >
                             {({ isActive }) => (
                                 <div className={`${isActive && 'bg-gradient-to-r from-white via-white to-slate-100 after:content[attr(after)] after:rounded-l-[3px] after:bg-[#1DB954] after:w-[7px] after:absolute after:right-0 after:h-full hover:to-white hover:after:w-[3px]'} relative flex items-center gap-3 pl-9 pr-2 py-4 text-slate-800 hover:bg-white transition-colors`}>
-                                    <PlaylistIcon fill='#f9004d' />
+                                    <PlaySongIcon fill='#f9004d' />
                                     <h2>Recently Played</h2>
                                 </div>
                             )}
