@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { useLocation } from 'react-router-dom'
 
 export default function ScrollPageBtn(props) {
@@ -13,4 +14,8 @@ export default function ScrollPageBtn(props) {
     }, [path])
 
     return <>{props.children}</>
+}
+
+ScrollPageBtn.propTypes= {
+    children: PropTypes.any,
 }
