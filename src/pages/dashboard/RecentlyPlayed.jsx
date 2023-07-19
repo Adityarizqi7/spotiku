@@ -224,18 +224,18 @@ const RecentlyPlayed = () => {
         };
         html2canvas(elementToCapture, html2canvasOptions)
         .then((canvas) => {
-            const dataURL = canvas.toDataURL('image/jpg');
+            const dataURL = canvas.toDataURL('image/png');
             const link = document.createElement('a');
-            link.download = 'test.jpg';
+            link.download = 'Your Recently Played by Smufy.png';
             link.href = dataURL;
             link.click();
         })
         .catch((error) => {
             console.error('Error capturing element:', error);
-        })
+          })
         .finally(() => {
             elementToCapture.style.display = originalDisplay;
-        });
+        });          
     }, [imageShareRef]);
 
     // const handleScroll = useCallback(() => {
@@ -269,7 +269,7 @@ const RecentlyPlayed = () => {
             desc = 'Recently Played | Halaman untuk menampilkan apa saja yang telah kamu putar di Akun Spotify mu'
             page_name='Recently Played'
         >
-            <section className={`recently-played-component relative ${trackCount > 10 && 'md:pb-10 pb-[5.5rem]'}`}>
+            <section className={`recently-played-component relative ${trackCount >= 10 && 'md:pb-10 pb-[5.5rem]'}`}>
                 <div className="played_statistic mt-4 space-y-5">
                     <div className="announcement-grafik flex items-center justify-end gap-2">
                         <div className="icon icon-image cursor-pointer flex items-center gap-2 manrope py-3 px-7 rounded-full bg-yellow-400/40 hover:bg-yellow-500/50" ref={chartButtonRef} onClick={handleOpenChart}>
@@ -349,7 +349,11 @@ const RecentlyPlayed = () => {
                         <Card className="box manrope space-y-2 px-5 py-3 rounded-[3px]">
                             <Flex justifyContent="between" className="space-x-4">
                                 <div className="truncate space-y-2">
-                                    <Metric>{loading ? '0' : trackCount}</Metric>
+                                    <Metric>
+                                        {
+                                            loading || recentlyPlayed?.length < 1 ? '0' : trackCount
+                                        }
+                                    </Metric>
                                     <Text>Total Tracks of 50</Text>
                                 </div>
                                 <div className='5xs:hidden'>
@@ -376,36 +380,32 @@ const RecentlyPlayed = () => {
                         loading ?
                             <SkeletonCircle className='mt-6' />
                         :
-                        <div className='space-y-6 sticky top-7 h-screen 3xs:h-auto 3xs:static 3xs:flex 3xs:flex-items-center 3xs:space-y-0 3xs:gap-3 3xs:w-[30rem]'>
-                        {
-                            recentlyPlayedArtists?.slice(0, 5)?.map((ele, idx) => {
-                                return (
-                                    <LightImage
-                                        key={idx}
-                                        path={ele?.image_big ? ele?.image_big : bgNull}
-                                        caption={`<h4 style='font-family: manrope;'>${ele?.name} - Smufy | <a className='text-green-base' href=${ele?.url} target="_blank" rel="noopener noreferrer">Open On Spotify</a></h4>`}
-                                    >
-                                        <ProgressiveImage 
-                                            key={idx} 
-                                            src={
-                                                ele?.image_small ? ele?.image_small : bgNull
-                                            } 
-                                            placeholder={
-                                                ele?.image_small ? ele?.image_small : bgNull
-                                            }>
-                                            {(src, loading) => {
-                                                return (
-                                                    <div className='relative overflow-hidden rounded-[100%] w-[84px] h-[84px]'>
-                                                        <img 
-                                                            style={{
-                                                                opacity:
-                                                                    loading
-                                                                        ? 0.5
-                                                                        : 1,
-                                                            }}
-                                                            className={"progressive-image object-cover cursor-pointer hover:scale-[1.5] transition-transform rounded-[100%] w-[84px] h-[84px]"} src={src} alt={ele?.name}
-                                                        />
-                                                        <noscript>
+                        recentlyPlayedArtists?.length < 1
+                        ?
+                            <div className='relative overflow-hidden rounded-[100%] w-[84px] h-[84px] bg-[#eee]'>
+                                
+                            </div> 
+                        :
+                            <div className='space-y-6 sticky top-7 h-screen 3xs:h-auto 3xs:static 3xs:flex 3xs:flex-items-center 3xs:space-y-0 3xs:gap-3 3xs:w-[30rem]'>
+                            {
+                                recentlyPlayedArtists?.slice(0, 5)?.map((ele, idx) => {
+                                    return (
+                                        <LightImage
+                                            key={idx}
+                                            path={ele?.image_big ? ele?.image_big : bgNull}
+                                            caption={`<h4 style='font-family: manrope;'>${ele?.name} - Smufy • <a className='text-green-base' href=${ele?.url} target="_blank" rel="noopener noreferrer">Open On Spotify</a></h4>`}
+                                        >
+                                            <ProgressiveImage 
+                                                key={idx} 
+                                                src={
+                                                    ele?.image_small ? ele?.image_small : bgNull
+                                                } 
+                                                placeholder={
+                                                    ele?.image_small ? ele?.image_small : bgNull
+                                                }>
+                                                {(src, loading) => {
+                                                    return (
+                                                        <div className='relative overflow-hidden rounded-[100%] w-[84px] h-[84px]'>
                                                             <img 
                                                                 style={{
                                                                     opacity:
@@ -413,24 +413,40 @@ const RecentlyPlayed = () => {
                                                                             ? 0.5
                                                                             : 1,
                                                                 }}
-                                                                className="progressive-image no-script object-cover cursor-pointer hover:scale-[1.5] transition-transform rounded-[100%] w-[84px] h-[84px]" src={src} alt={ele?.name} 
+                                                                className={"progressive-image object-cover cursor-pointer hover:scale-[1.5] transition-transform rounded-[100%] w-[84px] h-[84px]"} src={src} alt={ele?.name}
                                                             />
-                                                        </noscript>
-                                                    </div>
-                                                );
-                                            }}
-                                        </ProgressiveImage>                                        
-                                    </LightImage>
-                                )
-                            })
-                        }
-                        </div> 
+                                                            <noscript>
+                                                                <img 
+                                                                    style={{
+                                                                        opacity:
+                                                                            loading
+                                                                                ? 0.5
+                                                                                : 1,
+                                                                    }}
+                                                                    className="progressive-image no-script object-cover cursor-pointer hover:scale-[1.5] transition-transform rounded-[100%] w-[84px] h-[84px]" src={src} alt={ele?.name} 
+                                                                />
+                                                            </noscript>
+                                                        </div>
+                                                    );
+                                                }}
+                                            </ProgressiveImage>                                        
+                                        </LightImage>
+                                    )
+                                })
+                            }
+                            </div> 
                     }
                     </div>
                     <div className="played__track">
                     {
                         loading ?
                             <SkeletonSquare className='mt-6 3xs:mt-3' />
+                        :
+                        recentlyPlayed?.length < 1
+                        ?
+                            <div className='relative overflow-hidden rounded-[5px] w-[137px] h-[137px] bg-[#eee]'>
+                                    
+                            </div>
                         :
                         <>
                             <div className='grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 6xs:grid-cols-1 gap-y-7 gap-x-8 6xs:gap-x-0'>

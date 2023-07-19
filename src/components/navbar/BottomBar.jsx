@@ -5,6 +5,7 @@ import DotWave from "../loading/Dot";
 import spotify, { getRefreshToken } from '@/api/spotify'
 import ProgressiveImage from "react-progressive-graceful-image";
 import { AlbumIcon, FavoriteIcon, HomeIcon, PlaylistIcon } from "../icon/IconList";
+import { getFirstLetter } from "@/utils/Text";
 
 export function BottomBar() {
 
@@ -24,7 +25,7 @@ export function BottomBar() {
             .then(res => {
                 setLoading(false)
                 res.status === 200 && 
-                setCurrentUser(res.data)
+                setCurrentUser(res?.data)
             })
             .catch(e => {
                 setLoading(false)
@@ -35,7 +36,6 @@ export function BottomBar() {
     useEffect(() => {
         getCurrentUser()
     }, [getCurrentUser])
-
 
     return (
         <section className="bottombar-component md:hidden block fixed bottom-0 bg-white border-t border-[#DBDBDB] w-full overflow-x-auto whitespace-nowrap">
@@ -98,6 +98,8 @@ export function BottomBar() {
                             {
                                 loading ?
                                 <DotWave /> :
+                                currentUser?.images?.[1]?.url
+                                ?
                                 <ProgressiveImage src={currentUser?.images?.[1]?.url} placeholder={currentUser?.images?.[1]?.url}>
                                     {(src, loading) => {
                                         return (
@@ -126,6 +128,12 @@ export function BottomBar() {
                                         );
                                     }}
                                 </ProgressiveImage>
+                                :
+                                <div className='image-profile rounded-full w-[2rem] h-[2rem] text-slate-100 bg-slate-900 text-center flex flex-wrap items-center justify-center manrope'>
+                                    <h1>
+                                        {getFirstLetter(String(currentUser?.display_name))}
+                                    </h1>
+                                </div>
                             }
                             </div>
                         )}
