@@ -34,7 +34,7 @@ const Profile = () => {
             .then(res => {
                 setLoading(false)
                 res.status === 200 && 
-                setCurrentUser(res.data)
+                setCurrentUser(res?.data)
             })
             .catch(e => {
                 setLoading(false)
@@ -147,7 +147,7 @@ const Profile = () => {
                                 </div>
                             :
                                 <h3 className='mt-6 flex 4xs:flex-col truncate 4xs:items-start items-center 4xs:space-x-0 space-x-2 text-slate-800'>
-                                    <span>{currentUser?.email}</span>
+                                    <span>{currentUser?.email ? currentUser?.email : 'email'}</span>
                                     <span>•</span>
                                     <span>{countryList(String(currentUser?.country))}</span>
                                 </h3>
@@ -254,7 +254,7 @@ const Profile = () => {
                         {
                             playlistMaded <= 0 || playlistMaded === undefined || playlistMaded === null ?
                             <>
-                                <h1>Empty blend playlist.</h1>
+                                <h1>Empty own playlist.</h1>
                             </>
                             :
                             playlistMaded?.slice(0, 5)?.map((ele, idx) => {
@@ -294,7 +294,7 @@ const Profile = () => {
                         {
                             savedAlbum <= 0 || savedAlbum === undefined || savedAlbum === null ?
                             <>
-                                <h1>Empty blend playlist.</h1>
+                                <h1>Empty saved album.</h1>
                             </>
                             :
                             savedAlbum?.slice(0, 5)?.map((ele, idx) => {

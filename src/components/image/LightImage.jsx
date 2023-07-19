@@ -25,6 +25,6 @@ export default function LightImage({ path, caption, children }) {
 
 LightImage.propTypes= {
     caption: PropTypes.string,
-    path: PropTypes.string.isRequired,
+    path: PropTypes.string,
     children: PropTypes.any,
 }

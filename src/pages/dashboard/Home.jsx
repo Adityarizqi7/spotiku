@@ -122,7 +122,7 @@ const Home = () => {
         getTopGlobalTrack()
     }, [getTopGlobalTrack, getNewRelease, getRecentlyPlayed])
 
-
+    console.log(recentlyPlayed)
     return (
         <DashboardLayout
             title = 'Smufy — Explore and Discover Your Personal Spotify Statistics'
@@ -280,24 +280,28 @@ const Home = () => {
                         loading ?
                             <SkeletonSquare className='mt-6' />
                         :
-                        <div className='grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 6xs:grid-cols-1 gap-y-7 gap-x-8 6xs:gap-x-0 mt-6'>
-                        {
-                            recentlyPlayed?.items?.slice(0, 10)?.map((ele, idx) => (
-                                <div key={idx + 1} className="recently-played__box-item manrope">
-                                    <AvatarTrackSquare
-                                        alt={ele?.track?.name}
-                                        textAbove={ele?.track?.name}
-                                        className='w-[300px] aspect-137'
-                                        link={ele?.track?.external_urls?.spotify}
-                                        textBelow={ele?.track?.artists?.[0]?.name}
-                                        path={ele?.track?.album?.images?.[1]?.url}
-                                        path_light={ele?.track?.album?.images?.[1]?.url}
-                                        caption_light={`<h4 style='font-family: manrope;'>${ele?.track?.name} from ${ele?.track?.artists?.[0]?.name} - Smufy</h4>`}
-                                    />
-                                </div>
-                            ))                           
-                        }
-                        </div>
+                        recentlyPlayed?.items?.length < 1
+                        ?
+                            <h1 className='manrope font medium mt-4'>You haven&apos;t played any tracks recently.</h1>
+                        :
+                            <div className='grid xl:grid-cols-5 lg:grid-cols-4 sm:grid-cols-3 grid-cols-2 6xs:grid-cols-1 gap-y-7 gap-x-8 6xs:gap-x-0 mt-6'>
+                            {
+                                recentlyPlayed?.items?.slice(0, 10)?.map((ele, idx) => (
+                                    <div key={idx + 1} className="recently-played__box-item manrope">
+                                        <AvatarTrackSquare
+                                            alt={ele?.track?.name}
+                                            textAbove={ele?.track?.name}
+                                            className='w-[300px] aspect-137'
+                                            link={ele?.track?.external_urls?.spotify}
+                                            textBelow={ele?.track?.artists?.[0]?.name}
+                                            path={ele?.track?.album?.images?.[1]?.url}
+                                            path_light={ele?.track?.album?.images?.[1]?.url}
+                                            caption_light={`<h4 style='font-family: manrope;'>${ele?.track?.name} from ${ele?.track?.artists?.[0]?.name} - Smufy</h4>`}
+                                        />
+                                    </div>
+                                ))                           
+                            }
+                            </div>
                     }
                     <NavLink to={'/recently-played'}>
                         <RippleBtn
