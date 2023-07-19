@@ -224,18 +224,18 @@ const RecentlyPlayed = () => {
         };
         html2canvas(elementToCapture, html2canvasOptions)
         .then((canvas) => {
-            const dataURL = canvas.toDataURL('image/jpg');
+            const dataURL = canvas.toDataURL('image/png');
             const link = document.createElement('a');
-            link.download = 'test.jpg';
+            link.download = 'Your Recently Played by Smufy.png';
             link.href = dataURL;
             link.click();
         })
         .catch((error) => {
             console.error('Error capturing element:', error);
-        })
+          })
         .finally(() => {
             elementToCapture.style.display = originalDisplay;
-        });
+        });          
     }, [imageShareRef]);
 
     // const handleScroll = useCallback(() => {
@@ -269,7 +269,7 @@ const RecentlyPlayed = () => {
             desc = 'Recently Played | Halaman untuk menampilkan apa saja yang telah kamu putar di Akun Spotify mu'
             page_name='Recently Played'
         >
-            <section className={`recently-played-component relative ${trackCount > 10 && 'md:pb-10 pb-[5.5rem]'}`}>
+            <section className={`recently-played-component relative ${trackCount >= 10 && 'md:pb-10 pb-[5.5rem]'}`}>
                 <div className="played_statistic mt-4 space-y-5">
                     <div className="announcement-grafik flex items-center justify-end gap-2">
                         <div className="icon icon-image cursor-pointer flex items-center gap-2 manrope py-3 px-7 rounded-full bg-yellow-400/40 hover:bg-yellow-500/50" ref={chartButtonRef} onClick={handleOpenChart}>
@@ -383,7 +383,7 @@ const RecentlyPlayed = () => {
                                     <LightImage
                                         key={idx}
                                         path={ele?.image_big ? ele?.image_big : bgNull}
-                                        caption={`<h4 style='font-family: manrope;'>${ele?.name} - Smufy | <a className='text-green-base' href=${ele?.url} target="_blank" rel="noopener noreferrer">Open On Spotify</a></h4>`}
+                                        caption={`<h4 style='font-family: manrope;'>${ele?.name} - Smufy • <a className='text-green-base' href=${ele?.url} target="_blank" rel="noopener noreferrer">Open On Spotify</a></h4>`}
                                     >
                                         <ProgressiveImage 
                                             key={idx} 

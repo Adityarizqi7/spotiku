@@ -5,6 +5,7 @@ import DotWave from "../loading/Dot";
 import spotify, { getRefreshToken } from '@/api/spotify'
 import ProgressiveImage from "react-progressive-graceful-image";
 import { AlbumIcon, FavoriteIcon, HomeIcon, PlaylistIcon } from "../icon/IconList";
+import { getFirstLetter } from "@/utils/Text";
 
 export function BottomBar() {
 
@@ -98,6 +99,8 @@ export function BottomBar() {
                             {
                                 loading ?
                                 <DotWave /> :
+                                currentUser?.images?.[1]?.url
+                                ?
                                 <ProgressiveImage src={currentUser?.images?.[1]?.url} placeholder={currentUser?.images?.[1]?.url}>
                                     {(src, loading) => {
                                         return (
@@ -126,6 +129,12 @@ export function BottomBar() {
                                         );
                                     }}
                                 </ProgressiveImage>
+                                :
+                                <div className='image-profile rounded-full w-[2rem] h-[2rem] text-slate-100 bg-slate-900 text-center flex flex-wrap items-center justify-center'>
+                                    <h1>
+                                        {getFirstLetter(name)}
+                                    </h1>
+                                </div>
                             }
                             </div>
                         )}
