@@ -122,7 +122,6 @@ const Home = () => {
         getTopGlobalTrack()
     }, [getTopGlobalTrack, getNewRelease, getRecentlyPlayed])
 
-    console.log(recentlyPlayed)
     return (
         <DashboardLayout
             title = 'Smufy — Explore and Discover Your Personal Spotify Statistics'
